@@ -14,7 +14,7 @@ public Plugin myinfo =
 	name = "FixPlayerEquip",
 	author = "BotoX",
 	description = "Fix lag caused by game_player_equip entity.",
-	version = "1.0"
+	version = "1.0.0"
 }
 
 public void OnPluginStart()
