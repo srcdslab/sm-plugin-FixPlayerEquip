@@ -15,14 +15,14 @@ This repository contains a SourceMod plugin for Counter-Strike (CS:GO/CS2) that 
 ### Language & Platform
 - **Language**: SourcePawn (.sp files)
 - **Platform**: SourceMod 1.11.0+ (supports both CS:GO and CS2)
-- **Compiler**: SourcePawn Compiler (spcomp) via SourceKnight build system
+- **Compiler**: SourcePawn Compiler (spcomp)
 - **Target Games**: Counter-Strike: Global Offensive, Counter-Strike 2
 
 ### Build System
-- **Primary Build Tool**: SourceKnight (configured in `sourceknight.yaml`)
-- **Build Command**: Uses GitHub Actions with `maxime1907/action-sourceknight@v1`
+- **Primary Build Tool**: Native GitHub Actions workflow (`.github/workflows/ci.yml`)
+- **Build Command**: `spcomp` invoked directly via `rumblefrog/setup-sp@v1.3.1`
 - **Output Directory**: `/addons/sourcemod/plugins` (compiled .smx files)
-- **Dependencies**: Automatically downloaded SourceMod 1.11.0-git6917
+- **Dependencies**: SourceMod 1.12.x installed via `rumblefrog/setup-sp`
 
 ### Project Structure
 ```
@@ -108,8 +108,7 @@ public void OnEntityCreated(int entity, const char[] classname) { }
 
 ### Building the Plugin
 ```bash
-# Build using SourceKnight (automated in CI)
-sourceknight build
+# Build is automated in CI via GitHub Actions (.github/workflows/ci.yml)
 
 # Manual compilation (if needed)
 spcomp -i"path/to/include" FixPlayerEquip.sp
