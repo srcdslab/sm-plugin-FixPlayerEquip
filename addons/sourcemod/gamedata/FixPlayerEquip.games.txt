@@ -8,6 +8,7 @@
 			{
 				"library"	"server"
 				"linux"		"@_ZN9CCSPlayer15StockPlayerAmmoEP17CBaseCombatWeapon"
+				"linux64"		"@_ZN9CCSPlayer15StockPlayerAmmoEP17CBaseCombatWeapon"
 			}
 		}
 	}
