@@ -14,13 +14,13 @@ public Plugin myinfo =
 	name = "FixPlayerEquip",
 	author = "BotoX",
 	description = "Fix lag caused by game_player_equip entity.",
-	version = "1.0.1"
+	version = "1.0.2"
 }
 
 public void OnPluginStart()
 {
-	Handle hGameConf = LoadGameConfigFile("FixPlayerEquip.games");
-	if(hGameConf == INVALID_HANDLE)
+	GameData hGameConf = new GameData("FixPlayerEquip.games");
+	if(hGameConf == null)
 	{
 		SetFailState("Couldn't load FixPlayerEquip.games game config!");
 		return;
@@ -30,14 +30,14 @@ public void OnPluginStart()
 	StartPrepSDKCall(SDKCall_Player);
 	if(!PrepSDKCall_SetFromConf(hGameConf, SDKConf_Signature, "CCSPlayer_StockPlayerAmmo"))
 	{
-		CloseHandle(hGameConf);
+		delete hGameConf;
 		SetFailState("PrepSDKCall_SetFromConf(hGameConf, SDKConf_Signature, \"CCSPlayer_StockPlayerAmmo\" failed!");
 		return;
 	}
 	PrepSDKCall_AddParameter(SDKType_CBaseEntity, SDKPass_Pointer);
 	g_hCCSPlayer_StockPlayerAmmo = EndPrepSDKCall();
 
-	CloseHandle(hGameConf);
+	delete hGameConf;
 
 	/* Late Load */
 	int entity = INVALID_ENT_REFERENCE;
